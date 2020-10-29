@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var audio = document.createElement('audio');
+        var source = document.createElement('source');
+        var media = document.getElementById('media');
+        media.appendChild(audio);
+        audio.appendChild(source);
+        source.setAttribute('src', '../asset/song.mp3');
+        source.setAttribute('type', 'audio/mpeg');
+        audio.setAttribute('controls', 'controls');
+    </script>
+</body>
+</html>

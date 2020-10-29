@@ -1,5 +1,17 @@
 // Animation Timeline
 const animationTimeline = () => {
+
+  var audio = document.createElement('audio');
+  var source = document.createElement('source');
+  var media = document.getElementById('media');
+  media.appendChild(audio);
+  audio.appendChild(source);
+  source.setAttribute('src', '../asset/song1.mp3');
+  source.setAttribute('type', 'audio/mpeg');
+  // audio.setAttribute('controls', 'controls');
+  audio.setAttribute('muted', 'muted');
+  audio.play();
+  
   // Spit chars that needs to be animated individually
   const textBoxChars = document.getElementsByClassName("hbd-chatbox")[0];
   const hbd = document.getElementsByClassName("wish-hbd")[0];
@@ -194,7 +206,7 @@ const animationTimeline = () => {
       },
       "-=2"
     )
-    .from(".hat", 0.5, {
+    .from(".hat", 0.7, {
       x: -100,
       y: 350,
       rotation: -180,
@@ -256,7 +268,9 @@ const animationTimeline = () => {
       y: 30,
       zIndex: "-1"
     })
-    .staggerFrom(".nine p", 1, ideaTextTrans, 1.2)
+    .from(".before-nine", 0.7, ideaTextTrans)
+    .to(".before-nine", ideaTextTransLeave, "+=1.5")
+    .staggerFrom(".nine p", 0.7, ideaTextTrans)
     .to(
       ".last-smile",
       0.5,
@@ -266,9 +280,6 @@ const animationTimeline = () => {
       "+=1"
     );
 
-  // tl.seek("currentStep");
-  // tl.timeScale(2);
-
   // Restart Animation on click
   const replyBtn = document.getElementById("replay");
   replyBtn.addEventListener("click", () => {
@@ -276,31 +287,4 @@ const animationTimeline = () => {
   });
 };
 
-// Import the data to customize and insert them into page
-const fetchData = () => {
-  fetch("customize.json")
-    .then(data => data.json())
-    .then(data => {
-      Object.keys(data).map(customData => {
-        if (data[customData] !== "") {
-          if (customData === "imagePath") {
-            document
-              .getElementById(customData)
-              .setAttribute("src", data[customData]);
-          } else {
-            document.getElementById(customData).innerText = data[customData];
-          }
-        }
-      });
-    });
-};
-
-// Run fetch and animation in sequence
-const resolveFetch = () => {
-  return new Promise((resolve, reject) => {
-    fetchData();
-    resolve("Fetch done!");
-  });
-};
-
-resolveFetch().then(animationTimeline());
+animationTimeline();
