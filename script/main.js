@@ -6,7 +6,7 @@ const animationTimeline = () => {
   var media = document.getElementById('media');
   media.appendChild(audio);
   audio.appendChild(source);
-  source.setAttribute('src', '../asset/song1.mp3');
+  source.setAttribute('src', '../asset/song2.mp3');
   source.setAttribute('type', 'audio/mpeg');
   // audio.setAttribute('controls', 'controls');
   audio.setAttribute('muted', 'muted');
@@ -158,6 +158,8 @@ const animationTimeline = () => {
       },
       "+=2"
     )
+    .from(".idea-v", 1, ideaTextTrans)
+    .to(".idea-v", 1, ideaTextTransLeave, "+=9.5")
     .staggerFrom(
       ".idea-6 span",
       0.8,
@@ -268,8 +270,6 @@ const animationTimeline = () => {
       y: 30,
       zIndex: "-1"
     })
-    .from(".before-nine", 0.7, ideaTextTrans)
-    .to(".before-nine", ideaTextTransLeave, "+=1.5")
     .staggerFrom(".nine p", 0.7, ideaTextTrans)
     .to(
       ".last-smile",
